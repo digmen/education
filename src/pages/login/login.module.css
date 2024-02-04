@@ -1,0 +1,137 @@
+.register__container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.register__title {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 28px;
+    margin-bottom: 25px;
+}
+
+.register__title img {
+    width: 50px;
+    height: 50px;
+}
+
+.register__title h1 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+    width: 294px;
+}
+
+
+
+.register__form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.register__form input {
+    padding: 17px 0 17px 32px;
+    height: 53px;
+    border: 1px solid #6B6B6B;
+    border-radius: 24px;
+    background-color: transparent;
+    font-size: 18px;
+    color: #6B6B6B;
+    font-weight: 500;
+}
+
+
+
+
+.register__objects__text {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.register__objects__line {
+    background-color: #919293;
+    width: 134px;
+    height: 1px;
+}
+
+.register__objects__title {
+    color: #919293;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.form__btn {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form__lesson__btn {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid #6B6B6B;
+    padding: 14px 0 14px 30px;
+    height: 53px;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #F0908B;
+    background-color: transparent;
+    border-radius: 24px;
+}
+
+.form__lesson__btn img {
+    width: 25px;
+    height: 25px;
+}
+
+.register__btn {
+    border: none;
+    text-decoration: none;
+    font-size: 18px;
+    color: #FFFFFF;
+    background-color: #F0908B;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 24px;
+    padding-block: 15px;
+}
+
+.register__btn__link {
+    border: none;
+    text-decoration: none;
+    font-size: 18px;
+    color: #6B6B6B;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 24px;
+    padding-block: 15px;
+    border: 1px solid #6B6B6B;
+}
+
+.modal__btn {
+    border: none;
+    height: 45px;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #0B8BF0;
+}
+
+.modal__text {
+    font-size: 16px;
+    color: #000000;
+    font-weight: 500;
+    padding: 10px 0;
+    text-align: center;
+
+}
