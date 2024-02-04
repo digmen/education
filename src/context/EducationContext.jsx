@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer } from 'react';
-import { ACTIONS, BASE_URL } from '../utils/const';
+import { ACTIONS } from '../utils/const';
 import axios from 'axios';
 
 const educationContext = createContext();
@@ -9,14 +9,16 @@ export function useEducationContext() {
 }
 
 const initState = {
-    products: [],
-    oneProduct: null,
+    subject: [],
+    subjectId: null,
 };
 
 function reducer(state, action) {
     switch (action.type) {
-        case ACTIONS.products:
-            return { ...state, products: action.payload };
+        case ACTIONS.subject:
+            return { ...state, subject: action.payload };
+        case ACTIONS.subjectId:
+            return { ...state, subjectId: action.payload };
         default:
             return state;
     }
@@ -25,40 +27,45 @@ function reducer(state, action) {
 function EducationContext({ children }) {
     const [state, dispatch] = useReducer(reducer, initState);
 
-    async function getBestProducts() {
+    // async function getBestProducts() {
+    //     try {
+    //         const { data } = await axios.get(`${BASE_URL}/apartment?limit=500000`);
+    //         const filteredProducts = data.results.filter(
+    //             (product) => product.best === true
+    //         );
+    //         dispatch({
+    //             type: ACTIONS.bestproducts,
+    //             payload: filteredProducts,
+    //         });
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
+
+    async function getSubject() {
         try {
-            const { data } = await axios.get(`${BASE_URL}/apartment?limit=500000`);
-            const filteredProducts = data.results.filter(
-                (product) => product.best === true
-            );
+            const { data } = await axios.get('http://34.42.42.56:8000/api/v1/subject/');
+            const subject = data.results
             dispatch({
-                type: ACTIONS.bestproducts,
-                payload: filteredProducts,
+                type: ACTIONS.subject,
+                payload: subject,
             });
         } catch (error) {
             console.log(error);
         }
     }
 
-    async function getProducts() {
-        try {
-            const { data } = await axios.get(`${BASE_URL}/apartment/?limit=500000`);
-            const Products = data.results.filter((product) => product.best === false);
-            dispatch({
-                type: ACTIONS.products,
-                payload: Products,
-            });
-        } catch (error) {
-            console.log(error);
-        }
-    }
 
 
-    async function getOneProduct(id) {
+    async function getSubjectId() {
         try {
-            const { data } = await axios.get(`${BASE_URL}/apartment/${id}`);
+            const headers = {
+                Authorization: `Bearer ${localStorage.getItem('adminAccess')}`,
+            };
+            const { data } = await axios.get(`http://34.42.42.56:8000/api/v1/account/profile/`, { headers });
+
             dispatch({
-                type: ACTIONS.oneProduct,
+                type: ACTIONS.subjectId,
                 payload: data,
             });
         } catch (error) {
@@ -67,18 +74,18 @@ function EducationContext({ children }) {
     }
 
 
-    async function getImgUserId() {
-        const id = localStorage;
-        try {
-            await axios.get(`${BASE_URL}/img/users/${id}`);
-        } catch (error) { }
-    }
+    // async function getImgUserId() {
+    //     const id = localStorage;
+    //     try {
+    //         await axios.get(`${BASE_URL}/img/users/${id}`);
+    //     } catch (error) { }
+    // }
 
     const value = {
-        getProducts,
-        products: state.products,
-        getOneProduct,
-        oneProduct: state.oneProduct,
+        getSubject,
+        subject: state.subject,
+        getSubjectId,
+        subjectId: state.subjectId,
     };
     return (
         <educationContext.Provider value={value}>{children}</educationContext.Provider>

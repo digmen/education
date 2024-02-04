@@ -9,7 +9,7 @@ export default function MainRoutes() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const user = localStorage.getItem('user');
+        const user = localStorage.getItem('adminAccess');
         if (user) {
             navigate("/");
         } else {
