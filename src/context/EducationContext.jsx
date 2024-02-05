@@ -63,7 +63,6 @@ function EducationContext({ children }) {
                 Authorization: `Bearer ${localStorage.getItem('adminAccess')}`,
             };
             const { data } = await axios.get(`http://34.42.42.56:8000/api/v1/account/profile/`, { headers });
-
             dispatch({
                 type: ACTIONS.subjectId,
                 payload: data,

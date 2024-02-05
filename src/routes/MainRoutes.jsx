@@ -3,7 +3,6 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import RegisterPage from "../pages/register/RegisterPage";
 import MainPage from "../pages/home/MainPage";
 import MainLayout from "../layouts/MainLayout";
-import LoginPage from "../pages/login/LoginPage";
 
 export default function MainRoutes() {
     const navigate = useNavigate();

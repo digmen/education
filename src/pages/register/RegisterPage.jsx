@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'; // Добавляем импорт Axios
-import styles from "./register.module.css";
+import styles from "./register.module.scss";
 
 import logo from '../../assets/icon/logo.svg'
 import { useEducationContext } from '../../context/EducationContext';
@@ -100,7 +100,7 @@ export default function RegisterPage() {
                             <img src={logo} alt='logo' />
                             <h1>A world best education app for anyone.</h1>
                         </div>
-                        <div>
+                        <div className={styles.register__form__container}>
                             <form className={styles.register__form}>
                                 <input placeholder='Name' value={name} onChange={(e) => setName(e.target.value)} />
                                 <input placeholder='Password' type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
@@ -132,7 +132,7 @@ export default function RegisterPage() {
                             <img src={logo} alt='logo' />
                             <h1>A world best education app for anyone.</h1>
                         </div>
-                        <div>
+                        <div className={styles.register__form__container}>
                             <form className={styles.register__form}>
                                 <input placeholder='Name' value={nameLogin} onChange={(e) => setNameLogin(e.target.value)} />
                                 <input placeholder='Password' type="password" value={passwordLogin} onChange={(e) => setPasswordLogin(e.target.value)} />
