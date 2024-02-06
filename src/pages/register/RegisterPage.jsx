@@ -12,6 +12,7 @@ export default function RegisterPage() {
 
     const { subject, getSubject } = useEducationContext();
 
+    console.log(subject);
 
     const [name, setName] = useState(''); // Добавляем состояние для имени
     const [password, setPassword] = useState(''); // Добавляем состояние для пароля
@@ -24,6 +25,9 @@ export default function RegisterPage() {
 
     const [signIn, setSignIn] = useState(true)
 
+    const [validate, setValidate] = useState(false)
+    const [validateLogin, setValidateLogin] = useState(false)
+
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
@@ -34,14 +38,14 @@ export default function RegisterPage() {
                 grade: gradeId,
                 subjects: subjectsId,
             });
-            console.log(response);
             if (response.status >= 200 && response.status <= 300) {
                 setSignIn(false)
             }
         } catch (error) {
-            console.error(error);
+            setValidate(true)
         }
     }
+
 
     const handleSubjectAdd = async (id) => {
         setSubjectsId(prevIds => {
@@ -55,9 +59,6 @@ export default function RegisterPage() {
             }
         });
     }
-
-
-
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -74,22 +75,25 @@ export default function RegisterPage() {
                     navigate('/')
                 }
             } catch (error) {
-                console.error(error);
+                setValidateLogin(true)
             }
         }
     }
 
-    console.log(signIn);
 
     const handleSign = () => {
         setSignIn(!signIn)
+        setName('')
+        setPassword('')
+        setGradeId('')
+        setSubjectsId('')
+        setValidate(false)
+        setValidateLogin(false)
     }
 
     useEffect(() => {
         getSubject();
     }, []);
-
-
 
     return (
         <>
@@ -102,9 +106,10 @@ export default function RegisterPage() {
                         </div>
                         <div className={styles.register__form__container}>
                             <form className={styles.register__form}>
-                                <input placeholder='Name' value={name} onChange={(e) => setName(e.target.value)} />
-                                <input placeholder='Password' type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                                <input placeholder='Name' value={name} autoComplete="username" onChange={(e) => setName(e.target.value)} />
+                                <input placeholder='Password' value={password} autoComplete="current-password" onChange={(e) => setPassword(e.target.value)} />
                                 <input placeholder='Choose your grade from 1 to 11' maxLength={11} minLength={1} value={gradeId} onChange={(e) => setGradeId(e.target.value)} />
+                                <span className={styles.error__register}>{validate && "The password is less than 8 characters long, or your password does not contain lowercase or uppercase letters, or does not contain a symbol.Or you haven not filled in all the fields."}</span>
                                 {/* Добавляем обработчик изменений для уровня */}
                                 <div className={styles.register__objects__text}>
                                     <div className={styles.register__objects__line}></div>
@@ -134,8 +139,9 @@ export default function RegisterPage() {
                         </div>
                         <div className={styles.register__form__container}>
                             <form className={styles.register__form}>
-                                <input placeholder='Name' value={nameLogin} onChange={(e) => setNameLogin(e.target.value)} />
-                                <input placeholder='Password' type="password" value={passwordLogin} onChange={(e) => setPasswordLogin(e.target.value)} />
+                                <input placeholder='Name' value={nameLogin} autoComplete="username" onChange={(e) => setNameLogin(e.target.value)} />
+                                <input placeholder='Password' type="password" autoComplete="current-password" value={passwordLogin} onChange={(e) => setPasswordLogin(e.target.value)} />
+                                <span className={styles.error__register}>{validateLogin && 'There is no user information or you entered the wrong password.'}</span>
                                 <button type='button' onClick={handleLogin} className={styles.register__btn} >Sign in</button>
                                 <button type='button' onClick={handleSign} className={styles.register__btn__link}>Sign up</button>
                             </form>

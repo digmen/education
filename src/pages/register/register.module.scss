@@ -25,8 +25,6 @@
   width: 294px;
 }
 
-
-
 .register__form {
   display: flex;
   flex-direction: column;
@@ -36,29 +34,28 @@
 .register__form input {
   padding: 17px 0 17px 32px;
   height: 53px;
-  border: 1px solid #6B6B6B;
+  border: 1px solid #6b6b6b;
   border-radius: 24px;
   background-color: transparent;
   font-size: 18px;
-  color: #6B6B6B;
+  color: #6b6b6b;
   font-weight: 500;
 }
-
 
 .register__form__container {
   width: 100%;
 }
 
-
 .register__objects__text {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 7px;
 }
 
 .register__objects__line {
   background-color: #919293;
-  width: 134px;
+  width: 100%;
   height: 1px;
 }
 
@@ -78,13 +75,13 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  border: 1px solid #6B6B6B;
+  border: 1px solid #6b6b6b;
   padding: 14px 0 14px 30px;
   height: 53px;
   gap: 10px;
   font-size: 18px;
   font-weight: 500;
-  color: #F0908B;
+  color: #f0908b;
   background-color: transparent;
   border-radius: 24px;
 }
@@ -98,8 +95,8 @@
   border: none;
   text-decoration: none;
   font-size: 18px;
-  color: #FFFFFF;
-  background-color: #F0908B;
+  color: #ffffff;
+  background-color: #f0908b;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -111,14 +108,14 @@
   border: none;
   text-decoration: none;
   font-size: 18px;
-  color: #6B6B6B;
+  color: #6b6b6b;
   background-color: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 24px;
   padding-block: 15px;
-  border: 1px solid #6B6B6B;
+  border: 1px solid #6b6b6b;
 }
 
 .modal__btn {
@@ -127,7 +124,7 @@
   color: white;
   font-size: 16px;
   font-weight: 500;
-  background-color: #0B8BF0;
+  background-color: #0b8bf0;
 }
 
 .modal__text {
@@ -136,10 +133,22 @@
   font-weight: 500;
   padding: 10px 0;
   text-align: center;
-
 }
 
 .subjectsIdButton {
-  background-color: #F0908B;
+  background-color: #f0908b;
   color: white;
+}
+
+.test {
+  width: 100%;
+  height: 3px;
+  background-color: black;
+}
+
+.error__register {
+  color: red;
+  text-align: center;
+  text-align: justify;
+  padding-inline: 5px;
 }

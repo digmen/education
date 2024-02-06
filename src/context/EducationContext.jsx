@@ -10,7 +10,7 @@ export function useEducationContext() {
 
 const initState = {
     subject: [],
-    subjectId: null,
+    subjectId: [],
 };
 
 function reducer(state, action) {
@@ -63,9 +63,10 @@ function EducationContext({ children }) {
                 Authorization: `Bearer ${localStorage.getItem('adminAccess')}`,
             };
             const { data } = await axios.get(`http://34.42.42.56:8000/api/v1/account/profile/`, { headers });
+            const subjectId = data;
             dispatch({
                 type: ACTIONS.subjectId,
-                payload: data,
+                payload: subjectId,
             });
         } catch (error) {
             console.log(error);
