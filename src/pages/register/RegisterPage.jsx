@@ -12,7 +12,6 @@ export default function RegisterPage() {
 
     const { subject, getSubject } = useEducationContext();
 
-    console.log(subject);
 
     const [name, setName] = useState(''); // Добавляем состояние для имени
     const [password, setPassword] = useState(''); // Добавляем состояние для пароля

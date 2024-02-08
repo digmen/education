@@ -10,15 +10,18 @@ export function useEducationContext() {
 
 const initState = {
     subject: [],
-    subjectId: [],
+    userId: [],
+    userSubject: [],
 };
 
 function reducer(state, action) {
     switch (action.type) {
         case ACTIONS.subject:
             return { ...state, subject: action.payload };
-        case ACTIONS.subjectId:
-            return { ...state, subjectId: action.payload };
+        case ACTIONS.userId:
+            return { ...state, userId: action.payload };
+        case ACTIONS.userSubject:
+            return { ...state, userSubject: action.payload };
         default:
             return state;
     }
@@ -57,16 +60,18 @@ function EducationContext({ children }) {
 
 
 
-    async function getSubjectId() {
+    async function getUserId() {
         try {
             const headers = {
                 Authorization: `Bearer ${localStorage.getItem('adminAccess')}`,
             };
             const { data } = await axios.get(`http://34.42.42.56:8000/api/v1/account/profile/`, { headers });
-            const subjectId = data;
+            const user = data;
+            const tet = localStorage.getItem('id')
+            console.log(tet);
             dispatch({
-                type: ACTIONS.subjectId,
-                payload: subjectId,
+                type: ACTIONS.userId,
+                payload: user,
             });
         } catch (error) {
             console.log(error);
@@ -74,18 +79,30 @@ function EducationContext({ children }) {
     }
 
 
-    // async function getImgUserId() {
-    //     const id = localStorage;
-    //     try {
-    //         await axios.get(`${BASE_URL}/img/users/${id}`);
-    //     } catch (error) { }
-    // }
+    async function getUserSubject() {
+        const id = localStorage.getItem('id')
+        try {
+            const headers = {
+                Authorization: `Bearer ${localStorage.getItem('adminAccess')}`,
+            };
+            const { data } = await axios.get(`http://34.42.42.56:8000/api/v1/user-subject/25/`, { headers });
+            dispatch({
+                type: ACTIONS.userSubject,
+                payload: data,
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
 
     const value = {
         getSubject,
         subject: state.subject,
-        getSubjectId,
-        subjectId: state.subjectId,
+        getUserId,
+        userId: state.userId,
+        getUserSubject,
+        userSubject: state.userSubject,
     };
     return (
         <educationContext.Provider value={value}>{children}</educationContext.Provider>
