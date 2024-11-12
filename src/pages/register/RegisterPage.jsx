@@ -68,6 +68,8 @@ export default function RegisterPage() {
                     username: nameLogin,
                     password: passwordLogin,
                 });
+                console.log(response);
+
                 if (response.status >= 200 && response.status <= 300) {
                     localStorage.setItem('adminAccess', response.data.access)
                     localStorage.setItem('adminRefresh', response.data.refresh)

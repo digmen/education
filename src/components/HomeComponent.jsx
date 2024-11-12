@@ -27,6 +27,15 @@ export default function HomeComponent() {
 
     console.log(userSubject);
 
+
+    const { subjectId, getSubjectId } = useEducationContext();
+
+    useEffect(() => {
+
+        getSubjectId(id);
+    }, []);
+
+    console.log(subjectId, 'wwwwww');
     return (
         <div className={styles.container}>
             <img className={styles.logo} src={logo} alt='logo' />

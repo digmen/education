@@ -2,5 +2,6 @@
 export const ACTIONS = {
     subject: 'subject',
     subjectId: 'subjectId',
-    // user: 'user',
+    userId: 'userId',
+    userSubject: 'userSubject',
 };

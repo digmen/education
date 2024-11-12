@@ -10,6 +10,7 @@ export function useEducationContext() {
 
 const initState = {
     subject: [],
+    subjectId: [],
     userId: [],
     userSubject: [],
 };
@@ -18,6 +19,8 @@ function reducer(state, action) {
     switch (action.type) {
         case ACTIONS.subject:
             return { ...state, subject: action.payload };
+        case ACTIONS.subjectId:
+            return { ...state, subjectId: action.payload };
         case ACTIONS.userId:
             return { ...state, userId: action.payload };
         case ACTIONS.userSubject:
@@ -30,20 +33,21 @@ function reducer(state, action) {
 function EducationContext({ children }) {
     const [state, dispatch] = useReducer(reducer, initState);
 
-    // async function getBestProducts() {
-    //     try {
-    //         const { data } = await axios.get(`${BASE_URL}/apartment?limit=500000`);
-    //         const filteredProducts = data.results.filter(
-    //             (product) => product.best === true
-    //         );
-    //         dispatch({
-    //             type: ACTIONS.bestproducts,
-    //             payload: filteredProducts,
-    //         });
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
+
+    async function getSubjectId(id) {
+        try {
+            const { data } = await axios.get(`http://34.42.42.56:8000/api/v1/subject/${id}/`);
+            const subjectId = data
+            dispatch({
+                type: ACTIONS.subjectId,
+                payload: subjectId,
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
 
     async function getSubject() {
         try {
@@ -66,12 +70,10 @@ function EducationContext({ children }) {
                 Authorization: `Bearer ${localStorage.getItem('adminAccess')}`,
             };
             const { data } = await axios.get(`http://34.42.42.56:8000/api/v1/account/profile/`, { headers });
-            const user = data;
-            const tet = localStorage.getItem('id')
-            console.log(tet);
+            const userId = data;
             dispatch({
                 type: ACTIONS.userId,
-                payload: user,
+                payload: userId,
             });
         } catch (error) {
             console.log(error);
@@ -80,7 +82,6 @@ function EducationContext({ children }) {
 
 
     async function getUserSubject() {
-        const id = localStorage.getItem('id')
         try {
             const headers = {
                 Authorization: `Bearer ${localStorage.getItem('adminAccess')}`,
@@ -99,6 +100,8 @@ function EducationContext({ children }) {
     const value = {
         getSubject,
         subject: state.subject,
+        getSubjectId,
+        subjectId: state.subjectId,
         getUserId,
         userId: state.userId,
         getUserSubject,
